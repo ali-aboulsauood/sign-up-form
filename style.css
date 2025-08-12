@@ -1,0 +1,332 @@
+/* NOTE: 
+- An asterisk enclosed within parentheses (*) denotes values that are roughly inferred from the design file or decided by myself rather than explicitly given by The Odin Project.
+All `<length>` and `<percentage> values have been roughly inferred or decided by myself.
+
+- A plus sign enclosed within parentheses (+) denotes additional styles that were not required in the project assignment.
+*/
+
+/*
+TODO: Follow the best practices for web fonts
+
+Resources:
+1. https://www.theodinproject.com/lessons/node-path-intermediate-html-and-css-more-text-styles#assignment
+2. https://www.theodinproject.com/lessons/node-path-intermediate-html-and-css-more-text-styles#additional-resources
+*/
+
+/* Fonts */
+
+/* Norse font (for logo) */
+@font-face {
+    /* Norse Bold */
+
+    font-family: 'Norse';
+    src: url('assets/fonts/Norse-Bold.woff2') format('woff2'), url('assets/fonts/Norse-Bold.woff') format('woff');
+
+    font-weight: bold;
+    font-style: normal;
+
+    font-display: swap;
+}
+
+/* Roboto font (for text) (*) */
+
+/* TODO: Find the correct static variation of Roboto to be used instead of Roboto Bold and Roboto Bold Italic */
+
+@font-face {
+    /* Roboto Bold */
+
+    font-family: 'Roboto';
+
+    src: url('assets/fonts/Roboto-Bold.woff2') format('woff2'), url('assets/fonts/Roboto-Bold.woff') format('woff');
+
+    font-weight: bold;
+    font-style: normal;
+
+    font-display: swap;
+}
+
+@font-face {
+    /* Roboto Bold Italic */
+
+    font-family: 'Roboto';
+    src: url('assets/fonts/Roboto-BoldItalic.woff2') format('woff2'), url('assets/fonts/Roboto-BoldItalic.woff') format('woff');
+
+    font-weight: bold;
+    font-style: italic;
+
+    font-display: swap;
+}
+
+@font-face {
+    /* Roboto Regular */
+
+    font-family: 'Roboto';
+    src: url('assets/fonts/Roboto-Regular.woff2') format('woff2'), url('assets/fonts/Roboto-Regular.woff') format('woff');
+
+    font-weight: normal;
+    font-style: normal;
+
+    font-display: swap;
+}
+
+/* General style rulesets */
+
+:root {
+    /* 
+    A CSS variable for the system font stack used as a fallback. 
+    
+    Link: https://css-tricks.com/snippets/css/system-font-stack/#aa-related:~:text=%2D%2Dsystem%2Dui%3A%20system%2Dui%2C%20%22Segoe%20UI%22%2C%20Roboto%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%2C%20%22Apple%20Color%20Emoji%22%2C%20%22Segoe%20UI%20Emoji%22%2C%20%22Segoe%20UI%20Symbol%22%3B
+    */
+    --system-ui: system-ui, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+    /* Colors */
+
+    --text-color-1: #000000;                            /* (*) */
+    --text-color-2: #FFFFFF;                            /* (*) */
+
+    --input-label-color: #39414E;                       /* (*) */
+
+    --brand-color: #596D48;
+
+    /* Positions and Lengths */
+
+    --logo-and-text-top: 21.8%;                           /* (*) Should be 23.6% (approx.) according to the design file, but the background image would be positioned incorrectly in a 1920 x 1080 browser window. */
+
+    --left-div-width: 30.5%;                              /* (*) Should be 37.2% (approx.) according to the design file, but the background image would be positioned incorrectly in a 1920 x 1080 browser window. */
+
+    /* Borders */
+
+    --input-border-size-and-style: 0.0625rem solid;
+
+    /* Shadows */
+
+    --link-shadow: 0 0 1rem;
+    --subtle-shadow: 0.15rem 0.15rem 0.15rem #DADADA;   /* (*) */
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+
+    background-color: var(--text-color-2);
+    color: var(--text-color-1);
+
+    font-family: 'Roboto', var(--system-ui);
+
+    width: 100vw;
+    height: 100vh;
+
+    margin: 0;
+    padding: 0;
+}
+
+/* (+) Remove the default outline on link focus */
+a:focus {
+    outline: none;
+}
+
+/* Styles for the left division */
+
+.left {
+    position: relative;
+
+    background-image: url(assets/images/background-image.jpg);
+    /* (+) A background color to be used as a fallback in case rendering of the background image fails or is delayed. */
+    background-color: var(--brand-color);
+
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    width: var(--left-div-width);
+}
+
+.logo-and-text {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    top: var(--logo-and-text-top);
+
+    background-color: rgba(0, 0, 0, 0.5);                                   /* (*) */
+
+    width: 100%;
+
+    font-size: 3rem;
+    padding: 0.25em;
+}
+
+.text, .bg-img-credit, .bg-img-credit a {
+    color: var(--text-color-2);
+}
+
+.text {
+    font-family: 'Norse', var(--system-ui);
+
+    text-transform: uppercase;
+
+    /* The default margin created for `.text` prevents adjusting the margin and padding of `.logo-and-text`. */
+    margin: 0;
+}
+
+.bg-img-credit {
+    position: absolute;
+    bottom: 0;
+
+    text-align: center;
+
+    font-size: 0.9rem;
+
+    width: 100%;
+}
+
+.bg-img-credit a:hover {
+    text-shadow: var(--link-shadow) var(--text-color-2);
+}
+
+/* Styles for the right division */
+
+.right {
+    display: flex;
+    flex-direction: column;
+
+    /* Width explicitly set to prevent automatic sizing based on content. */
+    width: calc(100% - var(--left-div-width));
+
+    padding-left: 3.19%;
+    padding-right: 13.04%;
+}
+
+.form-intro {
+    font-size: 1.5rem;
+    font-weight: bold;
+
+    /* To align the form intro text relative to the logo and logo text as in the design file. */
+    margin-top: calc(var(--logo-and-text-top) - 6.42%);
+}
+
+#sign-up-form {
+    display: flex;
+    flex-wrap: wrap;
+
+    /* TODO: Achieve the correct width for form input elements, and the correct spacing between each two on the same horizontal level */
+
+    justify-content: space-between;             /* (*) */
+
+    width: 70%;
+}
+
+.label-and-input {
+    display: flex;
+    flex-direction: column;
+
+    width: 45%;
+
+    /* Should be `2.313rem` or `3.88vh`, but this value makes the spacing look closer to that in the design file in a 1920 x 1080 browser window. */
+    margin-bottom: 1.5rem;
+}
+
+label {
+    color: var(--input-label-color);
+
+    font-size: 0.75rem;
+    font-weight: bold;
+
+    letter-spacing: 0.13em;
+
+    text-transform: uppercase;
+
+    margin-bottom: 0.15rem;
+}
+
+input {
+    border: var(--input-border-size-and-style) #E5E7EB;
+
+    -o-border-radius: 0.25rem;
+    -ms-border-radius: 0.25rem;
+    -webkit-border-radius: 0.25rem;
+    -moz-border-radius: 0.25rem;
+    border-radius: 0.25rem;
+
+    outline: none;
+
+    padding: 0.5rem;
+
+    /* Form input elements do not inherit the parent font family by default. */
+    font: inherit;
+}
+
+/* styling specific to input elements in the invalid state is restricted to password input elements, as per the design tips. */
+input[type="password"]:invalid {
+    border: var(--input-border-size-and-style) #C54242;           /* (*) */
+}
+
+input:focus {
+    border: var(--input-border-size-and-style) #416ADD;           /* (*) */
+
+    box-shadow: var(--subtle-shadow);
+}
+
+/* TODO: Create the bottom shadow below the form in the design file */
+
+hr {
+    visibility: hidden;
+
+    width: 0;
+    height: 3.35vh;
+}
+
+.create-account {
+    background-color: var(--brand-color);
+    color: var(--text-color-2);
+
+    font-size: 1rem;
+    font-weight: bold;
+
+    padding: 1rem 3rem;
+    border: none;
+    margin-bottom: 2rem;
+
+    -webkit-border-radius: 0.5rem;
+    -moz-border-radius: 0.5rem;
+    -ms-border-radius: 0.5rem;
+    -o-border-radius: 0.5rem;
+    border-radius: 0.5rem;
+
+    text-transform: capitalize;
+
+    box-shadow: var(--subtle-shadow);
+
+    cursor: pointer;                /* (+) */
+}
+
+/* (+) Additional styles for the "create account" button */
+.create-account:hover, .create-account:focus {
+    color: var(--brand-color);
+    background-color: var(--text-color-2);
+
+    outline: var(--input-border-size-and-style) var(--brand-color);
+}
+
+.log-in-prompt {
+    margin: 0;
+}
+
+.log-in-prompt a {
+    color: var(--brand-color);
+
+    font-weight: bold;
+
+    text-decoration: none;
+}
+
+/* (+) Additional styles for the "log in" link */
+.log-in-prompt a:hover, .log-in-prompt a:focus {
+    text-shadow: var(--link-shadow) var(--brand-color);
+
+    text-decoration: underline;
+}

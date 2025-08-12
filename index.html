@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <title>Sign-Up Form</title>
+
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div class="left">
+            <div class="logo-and-text">
+                <img src="assets/images/logo.png" alt="Odin Logo" width="15%" height="15%" class="logo">
+
+                <h1 class="text">Odin</h1>
+            </div>
+
+            <p class="bg-img-credit">
+                Photo by <a href="https://unsplash.com/@haliewestphoto?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="noopener noreferrer">Halie West</a> on <a href="https://unsplash.com/photos/green-leaf-plant-in-close-up-photography-25xggax4bSA?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash" target="_blank" rel="noopener noreferrer">Unsplash</a>
+            </p>
+        </div>
+
+        <div class="right">
+            <p class="form-intro">
+                This is not a real online service!
+                You know you need something like this in your life to help you realize your deepest dreams.
+                <br>
+                Sign up <em>now</em> to get started.
+
+                <br><br>
+
+                You <em>know</em> you want to.
+
+                <br><br><br>
+
+                Let's do this!
+            </p>
+
+            <form action="" method="post" id="sign-up-form">
+                <!-- Autocomplete is enabled for all inputs except the Password and Confirm password fields. -->
+
+                <div class="label-and-input">
+                    <!-- 
+                    1. Autofocus (focus on page load) is enabled for the input requiring the user's first name for convenience.
+                    2. Spellcheck is enabled for the inputs requiring the user's first and last names.
+                    3. Placeholder text is set for all inputs.
+                    -->
+
+                    <label for="first-name">First name</label>
+                    <input type="text" name="firstName" id="first-name" required placeholder="Thor" autocomplete="given-name" spellcheck="true" autofocus>
+                </div>
+
+                <div class="label-and-input">
+                    <label for="last-name">Last name</label>
+                    <input type="text" name="lastName" id="last-name" required placeholder="Odinson" autocomplete="family-name" spellcheck="true">
+                </div>
+
+                <div class="label-and-input">
+                    <label for="email">Email</label>
+                    <input type="email" name="emailAddress" id="email" required placeholder="thor_odinson@theodinproject.com" autocomplete="email">
+                </div>
+
+                <div class="label-and-input">
+                    <label for="phone-number">Phone Number</label>
+                    <input type="tel" name="phoneNumber" id="phone-number" placeholder="+012345678910" autocomplete="mobile">
+                </div>
+
+                <!-- TODO: Find a way to add the flexed biceps emoji used below non-semantically -->
+
+                <div class="label-and-input">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" placeholder="a really strong password 💪" required>
+                </div>
+
+                <div class="label-and-input">
+                    <!-- 
+                    The "Confirm password" input has no `name` attribute.
+
+                    It is only needed for client-side validation, and not needed by the server.
+                    -->
+
+                    <label for="password-confirm">Confirm password</label>
+                    <input type="password" id="password-confirm" placeholder="the same really strong password 💪" required>
+                </div>
+            </form>
+
+            <hr>
+
+            <div class="footer">
+                <button type="submit" form="sign-up-form" class="create-account">Create account</button>
+
+                <p class="log-in-prompt">
+                    Already have an account?
+                    <a href="">Log in</a>
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
