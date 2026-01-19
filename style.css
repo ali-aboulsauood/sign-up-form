@@ -108,6 +108,11 @@ Resources:
     box-sizing: border-box;
 }
 
+*::selection {
+    background-color: var(--brand-color);
+    color: var(--text-color-2);
+}
+
 body {
     display: flex;
 
@@ -158,6 +163,9 @@ a:focus {
 
     font-size: 3rem;
     padding: 0.25em;
+
+    -webkit-user-select: none;
+    user-select: none;
 }
 
 .text, .bg-img-credit, .bg-img-credit a {
@@ -265,26 +273,29 @@ input {
 /* styling specific to input elements in the invalid state is restricted to password input elements, as per the design tips. */
 @supports selector(:user-invalid) {
     input[type="password"]:user-invalid {
-            border: var(--input-border-size-and-style) #C54242;
-            /* (*) */
+            border: var(--input-border-size-and-style) #C54242;   /* (*) */
         }
 }
 
 @supports not selector(:user-invalid) {
     input[type="password"]:invalid {
-            border: var(--input-border-size-and-style) #C54242;
-            /* (*) */
+            border: var(--input-border-size-and-style) #C54242;   /* (*) */
         }
 }
 
 input:hover {
-    border: var(--input-border-size-and-style) rgba(65, 106, 221, 0.75);
+    border: var(--input-border-size-and-style) #416addbf;         /* (*) */
 }
 
 input:focus {
     border: var(--input-border-size-and-style) #416ADD;           /* (*) */
 
     box-shadow: var(--subtle-shadow);
+}
+
+input::selection {
+    background-color: #416ADD;
+    color: var(--text-color-2);
 }
 
 /* TODO: Create the bottom shadow below the form in the design file */
