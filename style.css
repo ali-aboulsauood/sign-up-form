@@ -1,6 +1,6 @@
 /* NOTE: 
 - An asterisk enclosed within parentheses (*) denotes values that are roughly inferred from the design file or decided by myself rather than explicitly given by The Odin Project.
-All `<length>` and `<percentage> values have been roughly inferred or decided by myself.
+  All `<length>` and `<percentage>` values have been roughly inferred or decided by myself.
 
 - A plus sign enclosed within parentheses (+) denotes additional styles that were not required in the project assignment.
 */
@@ -241,6 +241,8 @@ label {
     text-transform: uppercase;
 
     margin-bottom: 0.15rem;
+
+    cursor: pointer;
 }
 
 input {
@@ -261,8 +263,22 @@ input {
 }
 
 /* styling specific to input elements in the invalid state is restricted to password input elements, as per the design tips. */
-input[type="password"]:invalid {
-    border: var(--input-border-size-and-style) #C54242;           /* (*) */
+@supports selector(:user-invalid) {
+    input[type="password"]:user-invalid {
+            border: var(--input-border-size-and-style) #C54242;
+            /* (*) */
+        }
+}
+
+@supports not selector(:user-invalid) {
+    input[type="password"]:invalid {
+            border: var(--input-border-size-and-style) #C54242;
+            /* (*) */
+        }
+}
+
+input:hover {
+    border: var(--input-border-size-and-style) rgba(65, 106, 221, 0.75);
 }
 
 input:focus {
@@ -329,4 +345,37 @@ hr {
     text-shadow: var(--link-shadow) var(--brand-color);
 
     text-decoration: underline;
+}
+
+/* (*) Transitions */
+
+@media (prefers-reduced-motion: no-preference) {
+    a {
+        display: inline-block;
+
+        transition: text-shadow 0.3s ease-out;
+    }
+
+    a:hover, a:focus {
+        transition-timing-function: ease-in;
+    }
+
+    button {
+        transition: background-color 0.25s ease-out, color 0.25s ease-out, border 0.25s ease-out;
+    }
+
+    button:hover, button:focus {
+        transition-timing-function: ease-in;
+    }
+
+    input {
+        transition: border-color 0.25s ease-out, box-shadow 0.25s ease-out;
+    }
+
+    label:hover+input,
+    label:focus+input,
+    input:hover,
+    input:focus {
+        transition-timing-function: ease-in;
+    }
 }
