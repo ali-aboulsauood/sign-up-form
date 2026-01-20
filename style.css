@@ -113,6 +113,10 @@ Resources:
     color: var(--text-color-2);
 }
 
+.highlighted {
+    color: var(--brand-color);
+}
+
 body {
     display: flex;
 
@@ -209,12 +213,52 @@ a:focus {
     padding-right: 13.04%;
 }
 
-.form-intro {
+.form-intro, .submit-text {
     font-size: 1.5rem;
     font-weight: bold;
 
     /* To align the form intro text relative to the logo and logo text as in the design file. */
     margin-top: calc(var(--logo-and-text-top) - 6.42%);
+}
+
+.submit-text {
+    font-size: 2rem;
+}
+
+.submit-text ul {
+    list-style-type: disc;
+
+    margin-top: 0;
+}
+
+.submit-text li {
+    margin-bottom: 1rem;
+}
+
+.submit-text li::marker {
+    color: var(--brand-color);
+}
+
+.submit-text li a {
+    text-decoration: none;
+    color: var(--brand-color);
+}
+
+.submit-text li a:hover, .submit-text li a:focus {
+    text-decoration: underline;
+}
+
+.submit-text p:last-of-type {
+    margin-bottom: 1rem;
+}
+
+.double-click-note {
+    display: block;
+    
+    font-size: 0.6em;
+    font-weight: normal;
+
+    margin-top: 1.25rem;
 }
 
 #sign-up-form {
